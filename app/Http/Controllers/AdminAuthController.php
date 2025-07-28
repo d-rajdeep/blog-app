@@ -35,6 +35,6 @@ class AdminAuthController extends Controller
     public function logout()
     {
         session()->forget('admin_id');
-        return redirect()->route('admin.login.page');
+        return redirect()->route('login.page');
     }
 }

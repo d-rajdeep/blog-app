@@ -62,7 +62,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a href="{{ route('blog.home') }}" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Blogs</a></li>
+                <li class="nav-item"><a href="{{route('all.blogs')}}" class="nav-link">Blogs</a></li>
                 @auth
                     <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
                     <li class="nav-item">
@@ -87,12 +87,7 @@
             <div class="carousel-item active">
                 <img src="{{ asset('dashboard_assets/image/slider1.jpg') }}" class="d-block w-100 slider-img" alt="Slider">
             </div>
-            <div class="carousel-item">
-                <img src="{{ asset('dashboard_assets/image/slider2.jpg') }}" class="d-block w-100 slider-img" alt="Slider">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('dashboard_assets/image/slider3.jpg') }}" class="d-block w-100 slider-img" alt="Slider">
-            </div>
+
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
@@ -126,17 +121,17 @@
     <h3 class="mb-4 text-center">Latest Blog Posts</h3>
 
     @if ($posts->isEmpty())
-    <p class="text-center">No blog posts available.</p>
+        <p class="text-center">No blog posts available.</p>
     @else
-    <div class="row">
-        @foreach ($posts as $post)
-
-                <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
-                        <div class="card-body">
-                            <h4>{{ $post->title }}</h4>
-                            <p>{{ Str::limit($post->content, 200) }}</p>
-                            <p class="text-muted">Posted by {{ $post->user->name }} on {{ $post->created_at->format('d M, Y') }}</p>
+        <div class="row">
+            @foreach($posts as $post)
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ $post->title }}</h5>
+                            <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
+                            <p class="text-muted mt-auto">By {{ $post->user->name }} on {{ $post->created_at->format('d M Y') }}</p>
+                            <a href="{{ route('post.readmore', $post->id) }}" class="btn btn-sm btn-outline-primary mt-2">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -144,6 +139,7 @@
         </div>
     @endif
 </div>
+
 
 </main>
 

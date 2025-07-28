@@ -59,6 +59,9 @@
                 <p class="mt-3 text-center">Don't have an account?
                     <a href="{{ route('register.page') }}" class="text-decoration-none">Register</a>
                 </p>
+                <div class="text-center mt-4">
+                        <a href="{{ route('blog.home') }}" class="btn btn-outline-primary">← Back to Home</a>
+                    </div>
             </form>
         </div>
     </div>

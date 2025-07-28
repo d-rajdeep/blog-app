@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ $post->title }} | My Blog</title>
+    <title>My Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS (Same as home) -->
@@ -23,6 +23,7 @@
         .navbar-brand {
             font-weight: bold;
             font-size: 1.5rem;
+            margin-bottom: 10px;
         }
         footer {
             background: #343a40;
@@ -49,8 +50,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a href="{{ route('blog.home') }}" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Blogs</a></li>
+                <li class="nav-item"><a href="{{ route('blog.home') }}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{{route('all.blogs')}}" class="nav-link active">Blogs</a></li>
                 @auth
                     <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
                     <li class="nav-item">
@@ -66,25 +67,33 @@
         </div>
     </nav>
 
-    <!-- Page Content -->
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <h2 class="mb-3">{{ $post->title }}</h2>
-                <p class="text-muted mb-4">By <strong>{{ $post->user->name }}</strong> on {{ $post->created_at->format('d M Y') }}</p>
-                <div class="border rounded p-4 bg-white shadow-sm">
-                    <div class="fs-5 lh-lg">
-                        {!! nl2br(e($post->content)) !!}
-                    </div>
-                    <div class="text-end mt-4">
-                        <a href="{{ route('blog.home') }}" class="btn btn-outline-primary">← Back to Home</a>
+{{-- Main Content --}}
+
+<!-- Blog Posts -->
+<br>
+<div class="container mb-5">
+    <h3 class="mb-4 text-center">Latest Blog Posts</h3>
+
+    @if ($posts->isEmpty())
+        <p class="text-center">No blog posts available.</p>
+    @else
+        <div class="row">
+            @foreach($posts as $post)
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ $post->title }}</h5>
+                            <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
+                            <p class="text-muted mt-auto">By {{ $post->user->name }} on {{ $post->created_at->format('d M Y') }}</p>
+                            <a href="{{ route('post.readmore', $post->id) }}" class="btn btn-sm btn-outline-primary mt-2">Read More</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-    </div>
+    @endif
+</div>
 
-    <!-- Footer (same as home.blade.php) -->
     <!-- Footer -->
     <footer class="text-center">
     <div class="container">

@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController;
 // --------------------
 Route::get('/', [HomeController::class, 'index'])->name('blog.home');
 Route::get('/post/{id}', [HomeController::class, 'readMore'])->name('post.readmore');
+Route::get('/blogs', [HomeController::class, 'allblogs'])->name('all.blogs');
 
 // --------------------
 // Auth Routes (User)
@@ -21,7 +22,7 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login.page');
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout.store');
 
 // --------------------
 // User Authenticated Routes
