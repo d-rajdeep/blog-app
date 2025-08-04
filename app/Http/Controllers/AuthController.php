@@ -20,7 +20,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|unique:users,phone',
+            'phone' => ['required', 'string', 'regex:/^[0-9]{10}$/', 'unique:users,phone'],
             'email' => 'nullable|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -44,29 +44,36 @@ class AuthController extends Controller
     // Handle login
     public function login(Request $request)
     {
+        // Step 1: Validate input
         $credentials = $request->validate([
-            'phone' => 'required|string',
-            'password' => 'required|string',
+            'phone' => 'required|string|digits:10',
+            'password' => 'required|string|min:6',
         ]);
 
+        // Step 2: Attempt login using Auth
         if (Auth::guard('web')->attempt([
             'phone' => $credentials['phone'],
             'password' => $credentials['password'],
-        ]))
-            {
-             $request->session()->regenerate();
+        ])) {
+            // Step 3: Regenerate session & redirect
+            $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
+
+        // Step 4: On failure, return with error
+        return back()->withErrors([
+            'phone' => 'The provided credentials do not match our records.',
+        ])->onlyInput('phone');
     }
 
     // Handle logout
     public function logout(Request $request)
     {
-    Auth::guard('web')->logout(); // ✅ explicitly use the web guard
+        Auth::guard('web')->logout(); // ✅ explicitly use the web guard
 
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-    return redirect('/');
+        return redirect('/');
     }
 }
