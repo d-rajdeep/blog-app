@@ -19,7 +19,7 @@
             <input type="text" name="phone" class="form-control" value="{{ old('phone', $user->phone) }}" required>
         </div>
         <div class="mb-3">
-            <label>Email (optional)</label>
+            <label>Email Id</label>
             <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}">
         </div>
         <hr>
