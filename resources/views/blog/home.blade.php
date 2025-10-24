@@ -237,165 +237,6 @@
             background-color: var(--primary-color);
             color: white;
         }
-
-        /* Custom styles for the hero slider */
-        .hero-slider {
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .carousel-item {
-            position: relative;
-            height: 70vh;
-            /* Default height for larger screens */
-        }
-
-        .carousel-item img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Mobile-first responsive adjustments */
-        @media (max-width: 768px) {
-            .carousel-item {
-                height: 50vh;
-                /* Reduced height for tablets */
-            }
-
-            .carousel-caption {
-                bottom: 20px;
-                padding: 0 15px;
-            }
-
-            .carousel-caption h3 {
-                font-size: 1.5rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .carousel-caption p {
-                font-size: 0.9rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .btn-slider {
-                padding: 0.4rem 1rem;
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .carousel-item {
-                height: 40vh;
-                /* Further reduced height for mobile */
-            }
-
-            .carousel-caption {
-                bottom: 10px;
-            }
-
-            .carousel-caption h3 {
-                font-size: 1.25rem;
-            }
-
-            .carousel-caption p {
-                font-size: 0.8rem;
-                display: none;
-                /* Hide description on very small screens */
-            }
-
-            .hero-slider {
-                margin-bottom: 2rem;
-                border-radius: 0;
-            }
-        }
-
-        /* Optional: Add captions for better UX */
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            padding: 20px;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 600px;
-        }
-
-        .btn-slider {
-            background-color: #4361ee;
-            border: none;
-            border-radius: 4px;
-            padding: 0.5rem 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-slider:hover {
-            background-color: #3a0ca3;
-            transform: translateY(-2px);
-        }
-
-        /* Carousel control styling */
-        .carousel-control-prev,
-        .carousel-control-next {
-            width: 8%;
-        }
-
-        @media (max-width: 576px) {
-
-            .carousel-control-prev,
-            .carousel-control-next {
-                width: 15%;
-            }
-        }
-
-        /* Carousel indicator styling */
-        .carousel-indicators {
-            bottom: 10px;
-        }
-
-        @media (max-width: 576px) {
-            .carousel-indicators {
-                bottom: 5px;
-            }
-
-            .carousel-indicators button {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                margin: 0 4px;
-            }
-        }
-
-        /* Custom styles for the hero slider */
-        .hero-slider {
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .carousel-item {
-            position: relative;
-            height: 70vh;
-            /* Default height for larger screens */
-        }
-
-        .carousel-item img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            filter: brightness(0.7);
-        }
-
-        .hero-slider {
-            margin-bottom: 3rem;
-            overflow: hidden;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
     </style>
 </head>
 
@@ -433,71 +274,12 @@
     <main>
 
         <!-- Hero Slider -->
-        <div id="heroSlider" class="carousel slide hero-slider" data-bs-ride="carousel">
-            <!-- Indicators -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-
+        <div id="heroSlider" class="carousel slide mb-5" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- Slide 1 -->
                 <div class="carousel-item active">
-                    <img src="dashboard_assets/image/slider1.jpg" class="d-block w-100" alt="Web Development">
-                    <div class="carousel-caption">
-                        <span class="blog-category">Web Development</span>
-                        <h1 class="blog-title">The Future of React: What's New in 2024</h1>
-                        <p class="blog-excerpt">Explore the latest features and best practices in React.</p>
-                        <div class="blog-meta">
-                            <span><i class="fas fa-user"></i> Sarah Johnson</span>
-                            <span><i class="far fa-clock"></i> 8 min read</span>
-                        </div>
-                        <button class="btn btn-primary btn-read-more">Read Article</button>
-                    </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <img src="images/slider2.jpg" class="d-block w-100" alt="JavaScript">
-                    <div class="carousel-caption">
-                        <span class="blog-category">Programming</span>
-                        <h1 class="blog-title">Mastering JavaScript Patterns</h1>
-                        <p class="blog-excerpt">Advanced JavaScript concepts for efficient development.</p>
-                        <div class="blog-meta">
-                            <span><i class="fas fa-user"></i> Michael Chen</span>
-                            <span><i class="far fa-clock"></i> 12 min read</span>
-                        </div>
-                        <button class="btn btn-primary btn-read-more">Read Article</button>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <img src="images/slider3.jpg" class="d-block w-100" alt="UI/UX Design">
-                    <div class="carousel-caption">
-                        <span class="blog-category">UI/UX Design</span>
-                        <h1 class="blog-title">Designing for Accessibility</h1>
-                        <p class="blog-excerpt">Create inclusive digital experiences for everyone.</p>
-                        <div class="blog-meta">
-                            <span><i class="fas fa-user"></i> Emily Rodriguez</span>
-                            <span><i class="far fa-clock"></i> 10 min read</span>
-                        </div>
-                        <button class="btn btn-primary btn-read-more">Read Article</button>
-                    </div>
+                    <img src="{{ asset('dashboard_assets/image/slider1.jpg') }}" class="d-block w-100" alt="Slider">
                 </div>
             </div>
-
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
 
         <!-- Categories -->
@@ -572,8 +354,7 @@
                         <h5 class="card-title">The social Media</h5>
                         <p class="card-text text-muted"> A Double-Edged Sword Social media has changed the world— for
                             better and for worse.</p>
-                        <a href="https://app.prideofapen.in/post/13"
-                            class="btn btn-sm btn-outline-primary mt-auto">Read
+                        <a href="https://app.prideofapen.in/post/13" class="btn btn-sm btn-outline-primary mt-auto">Read
                             More</a>
                     </div>
                 </div>
@@ -588,8 +369,7 @@
                         <h5 class="card-title">The social Anxiety</h5>
                         <p class="card-text text-muted">Living with Social Anxiety: The Silent Struggle Social anxiety
                             isn’t just “being shy.” It’s a constant battle wit...</p>
-                        <a href="https://app.prideofapen.in/post/10"
-                            class="btn btn-sm btn-outline-primary mt-auto">Read
+                        <a href="https://app.prideofapen.in/post/10" class="btn btn-sm btn-outline-primary mt-auto">Read
                             More</a>
                     </div>
                 </div>

@@ -32,7 +32,7 @@
                          alt="User Avatar"
                          class="rounded-circle me-2"
                          width="35" height="35">
-                    <span>{{ Auth::user()->name }}</span>
+                    {{-- <span>{{ Auth::user()->name }}</span> --}}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
