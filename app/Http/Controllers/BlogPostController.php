@@ -18,12 +18,21 @@ class BlogPostController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048', // validate image
         ]);
+
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+            // store image in storage/app/public/posts
+            $imagePath = $request->file('image')->store('posts', 'public');
+        }
 
         BlogPost::create([
             'title' => $request->title,
             'content' => $request->content,
             'user_id' => Auth::id(),
+            'image' => $imagePath,
             'is_published' => false,
         ]);
 
@@ -54,8 +63,8 @@ class BlogPostController extends Controller
 
     public function show($id)
     {
-    $post = BlogPost::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
-    return view('user.view_post', compact('post'));
+        $post = BlogPost::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        return view('user.view_post', compact('post'));
     }
 
     public function destroy($id)

@@ -8,23 +8,23 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="{{('assets/img/favicon.ico')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ 'assets/img/favicon.ico' }}">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/progressbar_barfiller.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/gijgo.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/animated-headline.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/slick.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/progressbar_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animated-headline.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body>
@@ -68,8 +68,14 @@
                                     <ul>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="{{route('login.page')}}">Log In or Sign Up</a></li>
+
+                                        @auth
+                                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                        @else
+                                            <li><a href="{{ route('login.page') }}">Log In or Sign Up</a></li>
+                                        @endauth
                                     </ul>
+
                                     <!-- Social -->
                                     <div class="header-social">
                                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -223,17 +229,31 @@
         <!-- Banner News Area End -->
         <!-- Latest Posts Area -->
         <div class="container mb-5">
-            <h3 class="text-center mb-4">Latest Blog Posts</h3>
+            <div class="col-12">
+                <div class="section-tittle mb-35">
+                    <h2>Latest Posts</h2>
+                </div>
+            </div>
+
             @if ($posts->isEmpty())
                 <p class="text-center text-muted">No blog posts available.</p>
             @else
                 <div class="row">
                     @foreach ($posts->take(6) as $post)
                         <div class="col-md-4 mb-4">
-                            <div class="card h-100">
+                            <div class="card h-100 shadow-sm border-0">
+                                @if ($post->image)
+                                    <img src="{{ asset('storage/blog_images' . $post->image) }}" class="card-img-top"
+                                        alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('images/blog.png') }}" class="card-img-top"
+                                        alt="Default Image" style="height: 200px; object-fit: cover;">
+                                @endif
+
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ $post->title }}</h5>
                                     <p class="card-text text-muted">{{ Str::limit($post->content, 120) }}</p>
+
                                     <p class="text-muted mt-auto mb-2 small">
                                         By <strong>{{ $post->user->name }}</strong> on
                                         {{ $post->created_at->format('d M Y') }}
@@ -241,8 +261,11 @@
                                             {{-- <span class="badge bg-warning text-dark ms-2">Pending Approval</span> --}}
                                         @endif
                                     </p>
+
                                     <a href="{{ route('post.readmore', $post->id) }}"
-                                        class="btn btn-sm btn-outline-primary">Read More</a>
+                                        class="btn btn-sm btn-outline-primary mt-auto">
+                                        Read More
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -259,79 +282,7 @@
                 @endif
             @endif
         </div>
-        <!-- Latest Posts End-->
-        <!-- Video Area Start -->
-        <div class="video-area">
-            <div class="container-fluid">
-                <div class="video-wrapper">
-                    <div class="left-content">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="section-tittle section-tittle2 mb-35">
-                                    <h2 class="mb-10">Videos</h2>
-                                    <p>TOP OF THE WEEK PLAYLIST</p>
-                                    <p class="video-cap">
-                                        Calling time on<br> irresponsible junk<br> food advertising
-                                    </p>
-                                    <small>Business / 5.0m</small>
-                                </div>
-                            </div>
-                            <!--Left Single -->
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-baner-nw4 mb-30">
-                                    <div class="banner-img-cap4">
-                                        <div class="banner-img4">
-                                            <img src="assets/img/gallery/video_img1.png" alt="">
-                                            <!--video iocn -->
-                                            <div class="video-icon video-icon2">
-                                                <a class="popup-video btn-icon"
-                                                    href="https://www.youtube.com/watch?v=up68UAfH0d0"
-                                                    data-animation="bounceIn" data-delay=".4s"><i
-                                                        class="fas fa-play"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="banner-cap4">
-                                            <h3><a href="post_details.html">Editors with strong points of view</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-baner-nw4 mb-30">
-                                    <div class="banner-img-cap4">
-                                        <div class="banner-img4">
-                                            <img src="assets/img/gallery/video_img2.png" alt="">
-                                            <!--video iocn -->
-                                            <div class="video-icon video-icon2">
-                                                <a class="popup-video btn-icon"
-                                                    href="https://www.youtube.com/watch?v=up68UAfH0d0"
-                                                    data-animation="bounceIn" data-delay=".4s"><i
-                                                        class="fas fa-play"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="banner-cap4">
-                                            <h3><a href="post_details.html">Dill is part of an unexpected
-                                                    groundswell</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-content">
-                        <div class="video-img">
-                            <img src="assets/img/gallery/video_bg.png" alt="">
-                            <!--video iocn -->
-                            <div class="video-icon video-icon2">
-                                <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=up68UAfH0d0"
-                                    data-animation="bounceIn" data-delay=".4s"><i class="fas fa-play"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Video Area End -->
+
         <!-- Nwes slider Start -->
         <div class="nes-slider-area pt-80 pb-80">
             <div class="container">
@@ -480,188 +431,76 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div><br></br>
         <!-- Top Posts End -->
         <!-- Latest Posts Area -->
-        <div class="latest-posts pt-80 pb-80">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-tittle mb-35">
-                            <h2>Latest Posts</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-baner-nw2 mb-30">
-                            <div class="banner-img-cap2">
-                                <div class="banner-img">
-                                    <img src="assets/img/gallery/trend1.png" alt="">
-                                </div>
-                                <div class="banner-cap2">
-                                    <p>Technology</p>
-                                    <h3><a href="post_details.html">The pomelo case: scope of plant rights in China</a>
-                                    </h3>
-                                    <p class="blog-text" style="text-transform: normal !important;">Indie folks start
-                                        out by making something they want to read, that tell stories they want told..
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-baner-nw2 mb-30">
-                            <div class="banner-img-cap2">
-                                <div class="banner-img">
-                                    <img src="assets/img/gallery/trend2.png" alt="">
-                                </div>
-                                <div class="banner-cap2">
-                                    <p>Technology</p>
-                                    <h3><a href="post_details.html">The pomelo case: scope of plant rights in China</a>
-                                    </h3>
-                                    <p class="blog-text" style="text-transform: normal !important;">Indie folks start
-                                        out by making something they want to read, that tell stories they want told..
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-baner-nw2 mb-30">
-                            <div class="banner-img-cap2">
-                                <div class="banner-img">
-                                    <img src="assets/img/gallery/trend3.png" alt="">
-                                </div>
-                                <div class="banner-cap2">
-                                    <p>Technology</p>
-                                    <h3><a href="post_details.html">The pomelo case: scope of plant rights in China</a>
-                                    </h3>
-                                    <p class="blog-text" style="text-transform: normal !;">Indie folks start out by
-                                        making something they want to read, that tell stories they want told..</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container mb-5">
+            <div class="col-12">
+                <div class="section-tittle mb-35">
+                    <h2>Latest Posts</h2>
                 </div>
             </div>
-        </div>
-        <!-- Latest Posts End-->
-        <!-- Want To work -->
-        <section class="wantToWork-area gray-bg ">
-            <div class="container">
-                <div class="wants-wrapper w-padding2">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-xl-6 col-lg-7 col-md-10">
-                            <div class="wantToWork-caption wantToWork-caption2">
-                                <h2>Subscribe for latest updates</h2>
-                                <p>Indie folks start out by making something they want to read, that tell stories they
-                                    want told..</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-5 col-lg-5 col-md-12">
-                            <form action="#" class="search-box">
-                                <div class="input-form">
-                                    <input type="text" placeholder="Enter your email">
-                                </div>
-                                <div class="search-form">
-                                    <a href="#">Subscribe</a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Want To work End -->
 
+            @if ($posts->isEmpty())
+                <p class="text-center text-muted">No blog posts available.</p>
+            @else
+                <div class="row">
+                    @foreach ($posts->take(3) as $post)
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm border-0">
+                                @if ($post->image)
+                                    <img src="{{ asset('storage/blog_images' . $post->image) }}" class="card-img-top"
+                                        alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('images/blog.png') }}" class="card-img-top"
+                                        alt="Default Image" style="height: 200px; object-fit: cover;">
+                                @endif
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    <p class="card-text text-muted">{{ Str::limit($post->content, 120) }}</p>
+
+                                    <p class="text-muted mt-auto mb-2 small">
+                                        By <strong>{{ $post->user->name }}</strong> on
+                                        {{ $post->created_at->format('d M Y') }}
+                                        @if (!$post->is_published)
+                                            {{-- <span class="badge bg-warning text-dark ms-2">Pending Approval</span> --}}
+                                        @endif
+                                    </p>
+
+                                    <a href="{{ route('post.readmore', $post->id) }}"
+                                        class="btn btn-sm btn-outline-primary mt-auto">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- View More Button -->
+                @if ($posts->count() > 6)
+                    <div class="text-center mt-4">
+                        <a href="{{ route('all.blogs') }}" class="view-more-btn">
+                            View All Posts <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                @endif
+            @endif
+        </div>
     </main>
 
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-padding">
-            <div class="header-area">
-                <div class="main-header ">
-                    <div class="header-top d-lg-block d-none">
-                        <div class="container">
-                            <div class="col-xl-12">
-                                <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="header-info-left d-flex justify-content-center">
-                                        <!-- Social -->
-                                        <div class="header-social">
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                            <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="header-info-mid">
-                                        <!-- logo -->
-                                        <div class="logo">
-                                            <a href="index.html"><img src="assets/img/logo/logo.png"
-                                                    alt=""></a>
-                                        </div>
-                                    </div>
-                                    <div class="header-info-right d-flex align-items-center">
-                                        <ul>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header-bottom header-bottom2 ">
-                        <div class="container-fluid">
-                            <div class="row align-items-center">
-                                <div class="col-12">
-                                    <!-- Main-menu -->
-                                    <div class="main-menu text-center">
-                                        <nav>
-                                            <ul>
-                                                <li><a href="category.html">Lifestyle</a></li>
-                                                <li><a href="category.html">Business</a></li>
-                                                <li><a href="category.html">Fashion</a></li>
-                                                <li><a href="category.html">Design</a></li>
-                                                <li><a href="category.html">Health</a></li>
-                                                <li><a href="category.html">Harmful</a></li>
-                                                <li><a href="category.html">Technology</a></li>
-                                                <li><a href="category.html">Travel</a></li>
-                                                <li><a href="category.html">Food</a></li>
-                                                <li><a href="category.html">Creative</a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <footer class="footer-bottom py-3 mt-5 bg-light border-top">
+        <div class="container text-center">
+            <strong>
+                © 2025
+                <a href="https://d-rajdeep.in/" class="text-decoration-none text-primary fw-semibold"
+                    target="_blank">
+                    Rajdeep
+                </a>
+                . All Rights Reserved.
+            </strong>
         </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="footer-border">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right text-center">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>
-                                        document.write(new Date().getFullYear());
-                                    </script> All rights reserved | This template is made with <i
-                                        class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                        target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
     </footer>
 
     <!-- Scroll Up -->

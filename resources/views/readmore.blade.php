@@ -1,98 +1,227 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
+
 <head>
-    <meta charset="UTF-8">
-    <title>{{ $post->title }} | My Blog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{ $post->title }} | Magazine News</title>
+    <meta name="description" content="{{ Str::limit(strip_tags($post->content), 160) }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
 
-    <!-- Bootstrap CSS (Same as home) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Same Google Font (if used in home) -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-        footer {
-            background: #343a40;
-            color: white;
-            padding: 1rem 0;
-        }
-        .footer a {
-            color: #adb5bd;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            color: white;
-        }
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/progressbar_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animated-headline.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <!-- Header/Navbar (matching home.blade.php) -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('blog.home') }}">My Blog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a href="{{ route('blog.home') }}" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Blogs</a></li>
-                @auth
-                    <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
-                    <li class="nav-item">
-                        <form action="{{ route('admin.logout') }}" method="POST">@csrf
-                            <button class="btn btn-sm btn-outline-danger">Logout</button>
-                        </form>
-                    </li>
-                @else
-                    <li class="nav-item"><a href="{{ route('login.store') }}" class="nav-link">Login</a></li>
-                    <li class="nav-item"><a href="{{ route('register.store') }}" class="nav-link">Register</a></li>
-                @endauth
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <h2 class="mb-3">{{ $post->title }}</h2>
-                <p class="text-muted mb-4">By <strong>{{ $post->user->name }}</strong> on {{ $post->created_at->format('d M Y') }}</p>
-                <div class="border rounded p-4 bg-white shadow-sm">
-                    <div class="fs-5 lh-lg">
-                        {!! nl2br(e($post->content)) !!}
-                    </div>
-                    <div class="text-end mt-4">
-                        <a href="{{ route('blog.home') }}" class="btn btn-outline-primary">← Back to Home</a>
-                    </div>
+    <!-- Preloader -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ asset('assets/img/logo/loder.png') }}" alt="Loading...">
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer (same as home.blade.php) -->
+    <!-- Header -->
+    <header>
+        <div class="header-area">
+            <div class="main-header">
+                <div class="header-top py-3 bg-white shadow-sm">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <div class="logo text-center">
+                                    <a href="{{ route('blog.home') }}">
+                                        <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo"
+                                            class="img-fluid" style="max-height: 60px;">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="header-bottom header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <div class="main-menu text-center d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{{ route('blog.home') }}">Home</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Blogs</a></li>
+                                            @auth
+                                                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                                <li>
+                                                    <form action="{{ route('admin.logout') }}" method="POST"
+                                                        class="d-inline">@csrf
+                                                        <button type="submit"
+                                                            class="btn btn-sm btn-danger text-white ms-2">Logout</button>
+                                                    </form>
+                                                </li>
+                                            @else
+                                                <li><a href="{{ route('login.page') }}">Login</a></li>
+                                                <li><a href="{{ route('register.page') }}">Register</a></li>
+                                            @endauth
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumb -->
+        <div class="page-notification">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ route('blog.home') }}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $post->title }}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post Details -->
+        <div class="psot-details pb-80 mt-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <!-- Post Image -->
+                        <div class="details-img mb-40 text-center">
+                            @if ($post->image)
+                                <img class="img-fluid rounded shadow-sm" src="{{ asset('storage/' . $post->image) }}"
+                                    alt="{{ $post->title }}" style="max-height: 450px; object-fit: cover;">
+                            @else
+                                <img class="img-fluid rounded shadow-sm"
+                                    src="{{ asset('assets/img/gallery/post_details.png') }}" alt="Default Image">
+                            @endif
+                        </div>
+
+                        <!-- Post Title -->
+                        <div class="about-details-cap mb-4">
+                            <h2 class="fw-bold">{{ $post->title }}</h2>
+                            <p class="text-muted mb-4">
+                                By <strong>{{ $post->user->name }}</strong> on
+                                {{ $post->created_at->format('d M Y') }}
+                            </p>
+                            <div class="fs-5 lh-lg text-dark mb-4">
+                                {!! nl2br(e($post->content)) !!}
+                            </div>
+                        </div>
+
+                        <!-- Social Icons -->
+                        <div class="social-iocn pt-20 pb-20 text-center">
+                            <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}"
+                                target="_blank">
+                                <img class="mr-10 mb-10" src="{{ asset('assets/img/gallery/facebook.png') }}"
+                                    alt="Facebook">
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::url()) }}&text={{ $post->title }}"
+                                target="_blank">
+                                <img class="mr-10 mb-10" src="{{ asset('assets/img/gallery/twitter.png') }}"
+                                    alt="Twitter">
+                            </a>
+                            <a href="https://pinterest.com/pin/create/button/?url={{ urlencode(Request::url()) }}"
+                                target="_blank">
+                                <img class="mr-10 mb-10" src="{{ asset('assets/img/gallery/pinterest.png') }}"
+                                    alt="Pinterest">
+                            </a>
+                            <a href="https://wa.me/?text={{ urlencode($post->title . ' ' . Request::url()) }}"
+                                target="_blank">
+                                <img class="mb-10" src="{{ asset('assets/img/gallery/whatsapp.png') }}"
+                                    alt="WhatsApp">
+                            </a>
+                        </div>
+
+                        <!-- Back to Home -->
+                        <div class="text-center mt-4">
+                            <a href="{{ route('blog.home') }}" class="btn btn-outline-primary">← Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <!-- Footer -->
-    <footer class="text-center">
-    <div class="container">
-        <p>&copy; {{ date('Y') }} My Laravel Blog. All rights reserved.</p>
-    </div>
+    <footer class="footer-bottom py-3 mt-5 bg-light border-top">
+        <div class="container text-center">
+            <strong>
+                © 2025
+                <a href="https://d-rajdeep.in/" class="text-decoration-none text-primary fw-semibold"
+                    target="_blank">
+                    Rajdeep
+                </a>
+                . All Rights Reserved.
+            </strong>
+        </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS -->
+    <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('assets/js/gijgo.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.barfiller.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('assets/js/hover-direction-snake.min.js') }}"></script>
+    <script src="{{ asset('assets/js/contact.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.form.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/mail-script.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
+
 </html>
