@@ -44,38 +44,15 @@
         <!-- Header Start -->
         <div class="header-area">
             <div class="main-header ">
-                <div class="header-top ">
+                <div class="header-top py-3 bg-white shadow-sm">
                     <div class="container-fluid">
-                        <div class="col-xl-12">
-                            <div class="row d-flex justify-content-lg-between align-items-center">
-                                <div class="header-info-left">
-                                    <li class="d-none d-lg-block">
-                                        <div class="form-box f-right ">
-                                            <input type="text" name="Search" placeholder="Search your interest...">
-                                            <div class="search-icon">
-                                                <i class="ti-search"></i>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </div>
-                                <div class="header-info-mid">
-                                    <!-- logo -->
-                                    <div class="logo">
-                                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="header-info-right d-flex align-items-center">
-                                    <ul>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="login.html">Log In or Sign Up</a></li>
-                                    </ul>
-                                    <!-- Social -->
-                                    <div class="header-social">
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                    </div>
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <div class="logo text-center">
+                                    <a href="{{route('blog.home')}}">
+                                        <img src="assets/img/logo/logo.png" alt="Logo" class="img-fluid"
+                                            style="max-height: 60px;">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -97,6 +74,7 @@
                                 <div class="main-menu text-center d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
+                                            <li><a href="{{ route('blog.home') }}">Home</a></li>
                                             <li><a href="category.html">Lifestyle</a></li>
                                             <li><a href="category.html">Business</a></li>
                                             <li><a href="category.html">Fashion</a></li>
@@ -207,14 +185,24 @@
                                     <!-- Password -->
                                     <div class="single-input-fields position-relative">
                                         <label>Password <span class="text-danger">*</span></label>
+
                                         <input type="password" id="password" name="password"
-                                            placeholder="Enter password" required style="padding-right: 40px;">
-                                        <i class="bi bi-eye position-absolute top-50 end-0 translate-middle-y me-3"
-                                            id="togglePasswordIcon"
-                                            style="cursor: pointer; color: #6c757d; z-index: 2;"
+                                            class="form-control pe-5" placeholder="Enter Password" required>
+
+                                        <!-- Visible eye icon inside input -->
+                                        <i class="bi bi-eye" id="togglePasswordIcon"
+                                            style="
+                                                    position: absolute;
+                                                    top: 70%;
+                                                    right: 15px;
+                                                    transform: translateY(-50%);
+                                                    cursor: pointer;
+                                                    color: #6c757d;
+                                                "
                                             onclick="togglePassword()"></i>
+
                                         @error('password')
-                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                            <div class="text-danger mt-1">{{ $message }}</div>
                                         @enderror
                                     </div>
 
@@ -245,13 +233,13 @@
         <!-- Password Toggle Script -->
         <script>
             function togglePassword() {
-                const input = document.getElementById('password');
+                const password = document.getElementById('password');
                 const icon = document.getElementById('togglePasswordIcon');
-                if (input.type === 'password') {
-                    input.type = 'text';
+                if (password.type === 'password') {
+                    password.type = 'text';
                     icon.classList.replace('bi-eye', 'bi-eye-slash');
                 } else {
-                    input.type = 'password';
+                    password.type = 'password';
                     icon.classList.replace('bi-eye-slash', 'bi-eye');
                 }
             }
@@ -263,91 +251,18 @@
         <!-- Register Area End -->
     </main>
 
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-padding">
-            <div class="header-area">
-                <div class="main-header ">
-                    <div class="header-top d-none d-lg-block">
-                        <div class="container">
-                            <div class="col-xl-12">
-                                <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="header-info-left d-flex">
-                                        <!-- Social -->
-                                        <div class="header-social">
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                            <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="header-info-mid">
-                                        <!-- logo -->
-                                        <div class="logo">
-                                            <a href="index.html"><img src="assets/img/logo/logo.png"
-                                                    alt=""></a>
-                                        </div>
-                                    </div>
-                                    <div class="header-info-right d-flex align-items-center">
-                                        <ul>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header-bottom header-bottom2 ">
-                        <div class="container-fluid">
-                            <div class="row align-items-center">
-                                <div class="col-12">
-                                    <!-- Main-menu -->
-                                    <div class="main-menu text-center">
-                                        <nav>
-                                            <ul>
-                                                <li><a href="category.html">Lifestyle</a></li>
-                                                <li><a href="category.html">Business</a></li>
-                                                <li><a href="category.html">Fashion</a></li>
-                                                <li><a href="category.html">Design</a></li>
-                                                <li><a href="category.html">Health</a></li>
-                                                <li><a href="category.html">Harmful</a></li>
-                                                <li><a href="category.html">Technology</a></li>
-                                                <li><a href="category.html">Travel</a></li>
-                                                <li><a href="category.html">Food</a></li>
-                                                <li><a href="category.html">Creative</a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Footer Bottom -->
+    <footer class="footer-bottom py-3 mt-5 bg-light border-top">
+        <div class="container text-center">
+            <strong>
+                © 2025
+                <a href="https://d-rajdeep.in/" class="text-decoration-none text-primary fw-semibold"
+                    target="_blank">
+                    Rajdeep
+                </a>
+                . All Rights Reserved.
+            </strong>
         </div>
-        <!-- footer-bottom area -->
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="footer-border">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right text-center">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>
-                                        document.write(new Date().getFullYear());
-                                    </script> All rights reserved | This template is made with <i
-                                        class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                        target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
     </footer>
     <!-- Scroll Up -->
     <div id="back-top">
