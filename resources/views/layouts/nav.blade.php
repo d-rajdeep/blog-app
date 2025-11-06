@@ -1,64 +1,101 @@
-<nav class="app-header navbar navbar-expand bg-body">
-    <!--begin::Container-->
-    <div class="container-fluid">
-        <!--begin::Start Navbar Links-->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                    <i class="bi bi-list"></i>
-                </a>
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand d-flex flex-column align-items-center text-decoration-none"
+            href="{{ route('dashboard') }}">
+            <span style="font-size: 1.25rem; font-weight: bold; color: #2c3e50;">My Blog</span>
+            <span style="font-size: 1rem; font-weight: 500; color: #ac4986;">Admin Dashboard</span>
+        </a>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+                <div class="input-group">
+                    <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                        <span class="input-group-text" id="search">
+                            <i class="icon-search"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
+                        aria-label="search" aria-describedby="search">
+                </div>
             </li>
-            <li class="nav-item d-none d-md-block">
-                <a href="{{ route('blog.home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
-            </li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
         </ul>
-        <!--end::Start Navbar Links-->
-
-        <!--begin::End Navbar Links-->
-        <ul class="navbar-nav ms-auto align-items-center">
-
-            <!--begin::Navbar Search-->
-            <li class="nav-item">
-                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li>
-
-            <!--begin::Account Dropdown-->
+        <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown">
-                <a class="nav-link d-flex align-items-center" data-bs-toggle="dropdown" href="#" role="button">
-                    <img src="{{ asset('dashboard_assets/image/user.png') }}"
-                         alt="User Avatar"
-                         class="rounded-circle me-2"
-                         width="35" height="35">
-                    {{-- <span>{{ Auth::user()->name }}</span> --}}
+                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                    data-toggle="dropdown">
+                    <i class="icon-bell mx-0"></i>
+                    <span class="count"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="{{ route('dashboard') }}">
-                            <i class="bi bi-person-circle me-2"></i> View Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                            <i class="bi bi-pencil-square me-2"></i> Edit Profile
-                        </a>
-                    </li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form action="{{ route('admin.logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="dropdown-item text-danger">
-                                <i class="bi bi-box-arrow-right me-2"></i> Sign Out
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                    aria-labelledby="notificationDropdown">
+                    <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-success">
+                                <i class="ti-info-alt mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                            <p class="font-weight-light small-text mb-0 text-muted">
+                                Just now
+                            </p>
+                        </div>
+                    </a>
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-warning">
+                                <i class="ti-settings mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <h6 class="preview-subject font-weight-normal">Settings</h6>
+                            <p class="font-weight-light small-text mb-0 text-muted">
+                                Private message
+                            </p>
+                        </div>
+                    </a>
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-info">
+                                <i class="ti-user mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                            <p class="font-weight-light small-text mb-0 text-muted">
+                                2 days ago
+                            </p>
+                        </div>
+                    </a>
+                </div>
             </li>
-            <!--end::Account Dropdown-->
+            <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                    <img src="{{ asset('images/faces/face28.jpg') }}" />
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item">
+                        <i class="ti-settings text-primary"></i>
+                        Settings
+                    </a>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <button type="submit" class="dropdown-item">
+                            <i class="ti-power-off text-primary"></i> Logout
+                        </button>
+                    </form>
 
+                </div>
+            </li>
         </ul>
-        <!--end::End Navbar Links-->
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+            data-toggle="offcanvas">
+            <span class="icon-menu"></span>
+        </button>
     </div>
 </nav>

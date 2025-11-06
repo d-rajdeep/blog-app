@@ -5,7 +5,7 @@
         <!--begin::Copyright-->
         <strong>
           Copyright &copy; 2025&nbsp;
-          <a href="tel:8638116318" class="text-decoration-none">Rajdeep</a>.
+          <a href="https://d-rajdeep.in/" class="text-decoration-none">Rajdeep</a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->

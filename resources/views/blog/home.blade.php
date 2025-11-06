@@ -1,307 +1,227 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <title>My Blog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Our Magazine</title>
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{{('assets/img/favicon.ico')}}">
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap" rel="stylesheet">
-
-    <style>
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            height: 100%;
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .navbar {
-            background: linear-gradient(to right, #001f3f, #003366);
-        }
-
-        .navbar-brand,
-        .nav-link,
-        .btn-outline-danger {
-            color: #fff !important;
-        }
-
-        .carousel-item img {
-            height: 500px;
-            object-fit: cover;
-        }
-
-        .category-box {
-            background: #fff;
-            border-radius: 12px;
-            padding: 1rem;
-            text-align: center;
-            transition: 0.3s;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
-        }
-
-        .category-box:hover {
-            background: #003366;
-            color: white;
-        }
-
-        .card {
-            border: none;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-        }
-
-        footer {
-            background: #001f3f;
-            color: #fff;
-            padding: 1.5rem 0;
-            margin-top: auto;
-        }
-
-        .view-more-btn {
-            background: #003366;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .view-more-btn:hover {
-            background: #001f3f;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        main {
-            flex: 1;
-        }
-
-        :root {
-            --primary-color: #002C58;
-            --secondary-color: #3a0ca3;
-            --accent-color: #4cc9f0;
-            --text-dark: #212529;
-            --text-light: #6c757d;
-            --bg-light: #f8f9fa;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .footer-main {
-            background-color: var(--bg-light);
-            padding: 3rem 0 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .footer-heading {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-heading:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-color);
-            transform: translateX(5px);
-        }
-
-        .footer-contact li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .footer-contact i {
-            color: var(--primary-color);
-            margin-right: 10px;
-            margin-top: 3px;
-            width: 16px;
-        }
-
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: white;
-            border-radius: 50%;
-            color: var(--primary-color);
-            margin-right: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .social-icons a:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            margin-top: 1rem;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-            outline: none;
-        }
-
-        .newsletter-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .newsletter-btn:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .category-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 1rem;
-        }
-
-        .category-tag {
-            background-color: white;
-            color: var(--primary-color);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            border: 1px solid #e9ecef;
-        }
-
-        .category-tag:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-    </style>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/progressbar_barfiller.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/gijgo.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animated-headline.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 </head>
 
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('blog.home') }}">My Blog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon bg-white"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="{{ route('blog.home') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="{{ route('all.blogs') }}" class="nav-link">Blogs</a></li>
-                    @auth
-                        <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
-                        <li class="nav-item">
-                            <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">@csrf
-                                <button class="btn btn-sm btn-outline-danger">Logout</button>
-                            </form>
-                        </li>
-                    @else
-                        <li class="nav-item"><a href="{{ route('login.store') }}" class="nav-link">Login</a></li>
-                        <li class="nav-item"><a href="{{ route('register.store') }}" class="nav-link">Register</a></li>
-                    @endauth
-                </ul>
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="assets/img/logo/loder.png" alt="">
+                </div>
             </div>
         </div>
-    </nav>
-
-    <!-- Main Content -->
+    </div>
+    <!-- Preloader Start-->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top ">
+                    <div class="container-fluid">
+                        <div class="col-xl-12">
+                            <div class="row d-flex justify-content-lg-between align-items-center">
+                                <div class="header-info-left">
+                                    <li class="d-none d-lg-block">
+                                        <div class="form-box f-right ">
+                                            <input type="text" name="Search" placeholder="Search your interest...">
+                                            <div class="search-icon">
+                                                <i class="ti-search"></i>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="header-info-mid">
+                                    <!-- logo -->
+                                    <div class="logo">
+                                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="header-info-right d-flex align-items-center">
+                                    <ul>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{route('login.page')}}">Log In or Sign Up</a></li>
+                                    </ul>
+                                    <!-- Social -->
+                                    <div class="header-social">
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <!-- logo 2 -->
+                                <div class="logo2">
+                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                </div>
+                                <!-- logo 3 -->
+                                <div class="logo3 d-block d-sm-none">
+                                    <a href="index.html"><img src="assets/img/logo/logo-mobile.png" alt=""></a>
+                                </div>
+                                <!-- Main-menu -->
+                                <div class="main-menu text-center d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="category.html">Lifestyle</a></li>
+                                            <li><a href="category.html">Business</a></li>
+                                            <li><a href="category.html">Fashion</a></li>
+                                            <li><a href="category.html">Design</a></li>
+                                            <li><a href="category.html">Health</a></li>
+                                            <li><a href="category.html">Harmful</a></li>
+                                            <li><a href="category.html">Technology</a></li>
+                                            <li><a href="category.html">Travel</a></li>
+                                            <li><a href="category.html">Food</a></li>
+                                            <li><a href="category.html">Creative</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
     <main>
-
-        <!-- Hero Slider -->
-        <div id="heroSlider" class="carousel slide mb-5" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('dashboard_assets/image/slider1.jpg') }}" class="d-block w-100" alt="Slider">
+        <!-- Banner News Area Start -->
+        <div class="banner-news">
+            <div class="container-fluid p-0">
+                <div class="banner-slider-active no-gutters ">
+                    <div class="single-sliders">
+                        <div class="single-baner-nw mb-30 text-center">
+                            <div class="banner-img-cap">
+                                <div class="banner-img">
+                                    <img src="assets/img/gallery/banner-cap1.png" alt="">
+                                    <!--video iocn -->
+                                    <div class="video-icon">
+                                        <a class="popup-video btn-icon"
+                                            href="https://www.youtube.com/watch?v=up68UAfH0d0"
+                                            data-animation="bounceIn" data-delay=".4s"><i
+                                                class="fas fa-play"></i></a>
+                                    </div>
+                                </div>
+                                <div class="banner-cap">
+                                    <p>Trending</p>
+                                    <h3><a href="#">Calling time on irresponsible junk food advertising to
+                                            children</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-sliders">
+                        <div class="single-baner-nw mb-30 text-center">
+                            <div class="banner-img-cap">
+                                <div class="banner-img">
+                                    <img src="assets/img/gallery/banner-cap2.png" alt="">
+                                </div>
+                                <div class="banner-cap">
+                                    <p>Trending</p>
+                                    <h3><a href="post_details.html">The pomelo case: scope of plant variety rights in
+                                            China</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-sliders">
+                        <div class="single-baner-nw mb-30 text-center">
+                            <div class="banner-img-cap">
+                                <div class="banner-img">
+                                    <img src="assets/img/gallery/banner-cap3.png" alt="">
+                                    <!--video iocn -->
+                                    <div class="video-icon">
+                                        <a class="popup-video btn-icon"
+                                            href="https://www.youtube.com/watch?v=up68UAfH0d0"
+                                            data-animation="bounceIn" data-delay=".4s"><i
+                                                class="fas fa-play"></i></a>
+                                    </div>
+                                </div>
+                                <div class="banner-cap">
+                                    <p>Trending</p>
+                                    <h3><a href="#">Valuable lessons to take away from COVID-19</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-sliders">
+                        <div class="single-baner-nw mb-30 text-center">
+                            <div class="banner-img-cap">
+                                <div class="banner-img">
+                                    <img src="assets/img/gallery/banner-cap4.png" alt="">
+                                </div>
+                                <div class="banner-cap">
+                                    <p>Trending</p>
+                                    <h3><a href="#">Building on consumer preferences shaped by the pandemic</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-sliders">
+                        <div class="single-baner-nw mb-30 text-center">
+                            <div class="banner-img-cap">
+                                <div class="banner-img">
+                                    <img src="assets/img/gallery/banner-cap2.png" alt="">
+                                    <!--video iocn -->
+                                    <div class="video-icon">
+                                        <a class="popup-video btn-icon"
+                                            href="https://www.youtube.com/watch?v=up68UAfH0d0"
+                                            data-animation="bounceIn" data-delay=".4s"><i
+                                                class="fas fa-play"></i></a>
+                                    </div>
+                                </div>
+                                <div class="banner-cap">
+                                    <p>Trending</p>
+                                    <h3><a href="#">Building on consumer preferences shaped by the pandemic</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Categories -->
-        <div class="container mb-5">
-            <h3 class="text-center mb-4">Explore Categories</h3>
-            <div class="row g-4">
-                <div class="col-md-3 col-6">
-                    <div class="category-box">Technology</div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="category-box">Health</div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="category-box">Travel</div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="category-box">Lifestyle</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Blog Posts -->
+        <!-- Banner News Area End -->
+        <!-- Latest Posts Area -->
         <div class="container mb-5">
             <h3 class="text-center mb-4">Latest Blog Posts</h3>
             @if ($posts->isEmpty())
@@ -339,149 +259,459 @@
                 @endif
             @endif
         </div>
-
-    </main>
-    <!-- Latest Articles -->
-    <div class="container mb-5">
-        <h3 class="text-center mb-4">Latest Articles</h3>
-        <div class="row">
-            <!-- Article 1 -->
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="dashboard_assets/image/The social Media.jpg" class="card-img-top" alt="Article Image"
-                        style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">The social Media</h5>
-                        <p class="card-text text-muted"> A Double-Edged Sword Social media has changed the world— for
-                            better and for worse.</p>
-                        <a href="https://app.prideofapen.in/post/13" class="btn btn-sm btn-outline-primary mt-auto">Read
-                            More</a>
+        <!-- Latest Posts End-->
+        <!-- Video Area Start -->
+        <div class="video-area">
+            <div class="container-fluid">
+                <div class="video-wrapper">
+                    <div class="left-content">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="section-tittle section-tittle2 mb-35">
+                                    <h2 class="mb-10">Videos</h2>
+                                    <p>TOP OF THE WEEK PLAYLIST</p>
+                                    <p class="video-cap">
+                                        Calling time on<br> irresponsible junk<br> food advertising
+                                    </p>
+                                    <small>Business / 5.0m</small>
+                                </div>
+                            </div>
+                            <!--Left Single -->
+                            <div class="col-lg-6 col-md-6">
+                                <div class="single-baner-nw4 mb-30">
+                                    <div class="banner-img-cap4">
+                                        <div class="banner-img4">
+                                            <img src="assets/img/gallery/video_img1.png" alt="">
+                                            <!--video iocn -->
+                                            <div class="video-icon video-icon2">
+                                                <a class="popup-video btn-icon"
+                                                    href="https://www.youtube.com/watch?v=up68UAfH0d0"
+                                                    data-animation="bounceIn" data-delay=".4s"><i
+                                                        class="fas fa-play"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="banner-cap4">
+                                            <h3><a href="post_details.html">Editors with strong points of view</a></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="single-baner-nw4 mb-30">
+                                    <div class="banner-img-cap4">
+                                        <div class="banner-img4">
+                                            <img src="assets/img/gallery/video_img2.png" alt="">
+                                            <!--video iocn -->
+                                            <div class="video-icon video-icon2">
+                                                <a class="popup-video btn-icon"
+                                                    href="https://www.youtube.com/watch?v=up68UAfH0d0"
+                                                    data-animation="bounceIn" data-delay=".4s"><i
+                                                        class="fas fa-play"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="banner-cap4">
+                                            <h3><a href="post_details.html">Dill is part of an unexpected
+                                                    groundswell</a></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Article 2 -->
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="dashboard_assets/image/The social Anxiety.png" class="card-img-top" alt="Article Image"
-                        style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">The social Anxiety</h5>
-                        <p class="card-text text-muted">Living with Social Anxiety: The Silent Struggle Social anxiety
-                            isn’t just “being shy.” It’s a constant battle wit...</p>
-                        <a href="https://app.prideofapen.in/post/10" class="btn btn-sm btn-outline-primary mt-auto">Read
-                            More</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Article 3 -->
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="dashboard_assets/image/Reality of Our Life.jpg" class="card-img-top"
-                        alt="Article Image" style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Reality of Our Life</h5>
-                        <p class="card-text text-muted">The Reality of Life: A Journey Through Light, Shadow, and
-                            Growth Life is a beautiful paradox — full of contradict...</p>
-                        <a href="https://app.prideofapen.in/post/14"
-                            class="btn btn-sm btn-outline-primary mt-auto">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer -->
-    <footer class="footer-main">
-        <div class="container py-5">
-            <div class="row">
-                <!-- Column 1: About & Newsletter -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <h5 class="footer-heading">My Blog</h5>
-                    <p class="text-secondary mb-4">It is a very impressive blog app where people can express their
-                        thougts or feelings as a post with just a very simple steps</p>
-
-                    <h6 class="text-dark mb-3">Stay Updated</h6>
-                    <div class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Your email address">
-                        <button class="newsletter-btn">Subscribe</button>
-                    </div>
-                </div>
-
-                <!-- Column 2: Quick Links -->
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <h5 class="footer-heading">Quick Links</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li class="mb-2"><a href="{{ route('blog.home') }}">Home</a></li>
-                        <li class="mb-2"><a href="{{ route('all.blogs') }}">All Articles</a></li>
-                        <li class="mb-2"><a href="{{ route('login.store') }}">Login</a></li>
-                        <li class="mb-2"><a href="{{ route('register.store') }}">Register</a></li>
-                        <li class="mb-2"><a href="#">About Us</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Categories -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="footer-heading">Categories</h5>
-                    <div class="category-tags">
-                        <a href="#" class="category-tag">Article</a>
-                        <a href="#" class="category-tag">Features</a>
-                        <a href="#" class="category-tag">Poem</a>
-                        <a href="#" class="category-tag">News</a>
-                        <a href="#" class="category-tag">Biography</a>
-                        <a href="#" class="category-tag">POV</a>
-                    </div>
-                </div>
-
-                <!-- Column 4: Contact & Social -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="footer-heading">Get In Touch</h5>
-                    <ul class="list-unstyled text-secondary footer-contact">
-                        <li class="mb-2">
-                            <i class="fas fa-envelope"></i>
-                            <span>hello@codecanvas.dev</span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-phone"></i>
-                            <span>+1 (555) 123-4567</span>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Chandmari, Guwahati</span>
-                        </li>
-                    </ul>
-
-                    <div class="mt-4">
-                        <h6 class="text-dark mb-3">Follow Us</h6>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-github"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-dev"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
+                    <div class="right-content">
+                        <div class="video-img">
+                            <img src="assets/img/gallery/video_bg.png" alt="">
+                            <!--video iocn -->
+                            <div class="video-icon video-icon2">
+                                <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=up68UAfH0d0"
+                                    data-animation="bounceIn" data-delay=".4s"><i class="fas fa-play"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Copyright Section -->
-        <div class="footer-bottom">
+        <!-- Video Area End -->
+        <!-- Nwes slider Start -->
+        <div class="nes-slider-area pt-80 pb-80">
             <div class="container">
-                <div class="d-md-flex justify-content-between align-items-center text-center">
-                    <p class="mb-2 mb-md-0">&copy; {{ date('Y') }} My Blog. All rights reserved.</p>
-                    <div>
-                        <a href="#" class="text-white me-3 text-decoration-none">Privacy Policy</a>
-                        <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="news-slider-active">
+                            <div class="single-news-slider">
+                                <div class="news-img">
+                                    <a href="category.html"><img src="assets/img/gallery/news-slider1.png"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                            <div class="single-news-slider">
+                                <div class="news-img">
+                                    <a href="category.html"><img src="assets/img/gallery/news-slider2.png"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                            <div class="single-news-slider">
+                                <div class="news-img">
+                                    <a href="category.html"><img src="assets/img/gallery/news-slider3.png"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                            <div class="single-news-slider">
+                                <div class="news-img">
+                                    <a href="category.html"><img src="assets/img/gallery/news-slider4.png"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                            <div class="single-news-slider">
+                                <div class="news-img">
+                                    <a href="category.html"><img src="assets/img/gallery/news-slider1.png"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                            <div class="single-news-slider">
+                                <div class="news-img">
+                                    <a href="category.html"><img src="assets/img/gallery/news-slider2.png"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Nwes slider End -->
+        <!-- Top Posts Start -->
+        <div class="top-post-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-tittle mb-35">
+                            <h2>Top Posts</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-lg-between">
+                    <div class="col-lg-8 col-md-8">
+                        <!-- single-job-content -->
+                        <div class="single-job-items mb-30">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="#"><img src="assets/img/gallery/top-psot1.png" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <span>Trending</span>
+                                    <a href="post_details.html">
+                                        <h4>The pomelo case: scope of plant variety rights in China</h4>
+                                    </a>
+                                    <p>We present things in a way that isn’t sensational, said Ms. Cham mavanijakul, 20,
+                                        whose family has roots...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single-job-content -->
+                        <div class="single-job-items mb-30">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="#"><img src="assets/img/gallery/top-psot2.png" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <span>Trending</span>
+                                    <a href="post_details.html">
+                                        <h4>The pomelo case:scope of plant variety rights in China</h4>
+                                    </a>
+                                    <p>We present things in a way that isn’t sensational, said Ms. Cham mavanijakul, 20,
+                                        whose family has roots...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single-job-content -->
+                        <div class="single-job-items mb-30">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="#"><img src="assets/img/gallery/top-psot3.png" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <span>Trending</span>
+                                    <a href="post_details.html">
+                                        <h4>The pomelo case:scope of plant variety rights in China</h4>
+                                    </a>
+                                    <p>We present things in a way that isn’t sensational, said Ms. Cham mavanijakul, 20,
+                                        whose family has roots...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single-job-content -->
+                        <div class="single-job-items mb-30">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="#"><img src="assets/img/gallery/top-psot4.png" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <span>Trending</span>
+                                    <a href="post_details.html">
+                                        <h4>The pomelo case:scope of plant variety rights in China</h4>
+                                    </a>
+                                    <p>We present things in a way that isn’t sensational, said Ms. Cham mavanijakul, 20,
+                                        whose family has roots...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- single-job-content -->
+                        <div class="single-job-items mb-30">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="#"><img src="assets/img/gallery/top-psot5.png" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <span>Trending</span>
+                                    <a href="post_details.html">
+                                        <h4>The pomelo case:scope of plant variety rights in China</h4>
+                                    </a>
+                                    <p>We present things in a way that isn’t sensational, said Ms. Cham mavanijakul, 20,
+                                        whose family has roots...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="google-add mb-40">
+                            <img src="assets/img/gallery/Ad.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Posts End -->
+        <!-- Latest Posts Area -->
+        <div class="latest-posts pt-80 pb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-tittle mb-35">
+                            <h2>Latest Posts</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-baner-nw2 mb-30">
+                            <div class="banner-img-cap2">
+                                <div class="banner-img">
+                                    <img src="assets/img/gallery/trend1.png" alt="">
+                                </div>
+                                <div class="banner-cap2">
+                                    <p>Technology</p>
+                                    <h3><a href="post_details.html">The pomelo case: scope of plant rights in China</a>
+                                    </h3>
+                                    <p class="blog-text" style="text-transform: normal !important;">Indie folks start
+                                        out by making something they want to read, that tell stories they want told..
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-baner-nw2 mb-30">
+                            <div class="banner-img-cap2">
+                                <div class="banner-img">
+                                    <img src="assets/img/gallery/trend2.png" alt="">
+                                </div>
+                                <div class="banner-cap2">
+                                    <p>Technology</p>
+                                    <h3><a href="post_details.html">The pomelo case: scope of plant rights in China</a>
+                                    </h3>
+                                    <p class="blog-text" style="text-transform: normal !important;">Indie folks start
+                                        out by making something they want to read, that tell stories they want told..
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-baner-nw2 mb-30">
+                            <div class="banner-img-cap2">
+                                <div class="banner-img">
+                                    <img src="assets/img/gallery/trend3.png" alt="">
+                                </div>
+                                <div class="banner-cap2">
+                                    <p>Technology</p>
+                                    <h3><a href="post_details.html">The pomelo case: scope of plant rights in China</a>
+                                    </h3>
+                                    <p class="blog-text" style="text-transform: normal !;">Indie folks start out by
+                                        making something they want to read, that tell stories they want told..</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Latest Posts End-->
+        <!-- Want To work -->
+        <section class="wantToWork-area gray-bg ">
+            <div class="container">
+                <div class="wants-wrapper w-padding2">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-xl-6 col-lg-7 col-md-10">
+                            <div class="wantToWork-caption wantToWork-caption2">
+                                <h2>Subscribe for latest updates</h2>
+                                <p>Indie folks start out by making something they want to read, that tell stories they
+                                    want told..</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-5 col-md-12">
+                            <form action="#" class="search-box">
+                                <div class="input-form">
+                                    <input type="text" placeholder="Enter your email">
+                                </div>
+                                <div class="search-form">
+                                    <a href="#">Subscribe</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Want To work End -->
+
+    </main>
+
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="header-area">
+                <div class="main-header ">
+                    <div class="header-top d-lg-block d-none">
+                        <div class="container">
+                            <div class="col-xl-12">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="header-info-left d-flex justify-content-center">
+                                        <!-- Social -->
+                                        <div class="header-social">
+                                            <a href="#"><i class="fab fa-twitter"></i></a>
+                                            <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="header-info-mid">
+                                        <!-- logo -->
+                                        <div class="logo">
+                                            <a href="index.html"><img src="assets/img/logo/logo.png"
+                                                    alt=""></a>
+                                        </div>
+                                    </div>
+                                    <div class="header-info-right d-flex align-items-center">
+                                        <ul>
+                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-bottom header-bottom2 ">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu text-center">
+                                        <nav>
+                                            <ul>
+                                                <li><a href="category.html">Lifestyle</a></li>
+                                                <li><a href="category.html">Business</a></li>
+                                                <li><a href="category.html">Fashion</a></li>
+                                                <li><a href="category.html">Design</a></li>
+                                                <li><a href="category.html">Health</a></li>
+                                                <li><a href="category.html">Harmful</a></li>
+                                                <li><a href="category.html">Technology</a></li>
+                                                <li><a href="category.html">Travel</a></li>
+                                                <li><a href="category.html">Food</a></li>
+                                                <li><a href="category.html">Creative</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="footer-copy-right text-center">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>
+                                        document.write(new Date().getFullYear());
+                                    </script> All rights reserved | This template is made with <i
+                                        class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                        target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
     </footer>
-    <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS here -->
+
+    <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/animated.headline.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.js') }}"></script>
+
+    <!-- Date Picker -->
+    <script src="{{ asset('assets/js/gijgo.min.js') }}"></script>
+    <!-- Nice-select, sticky -->
+    <script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
+    <!-- Progress -->
+    <script src="{{ asset('assets/js/jquery.barfiller.js') }}"></script>
+
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('assets/js/hover-direction-snake.min.js') }}"></script>
+
+    <!-- contact js -->
+    <script src="{{ asset('assets/js/contact.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.form.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/mail-script.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.ajaxchimp.min.js') }}"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
 </body>
 
 </html>
