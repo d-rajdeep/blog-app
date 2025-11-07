@@ -103,16 +103,16 @@
                                 <div class="main-menu text-center d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="category.html">Current Affairs</a></li>
-                                            <li><a href="category.html">Lifestyle & Culture</a></li>
-                                            <li><a href="category.html">Technology & Innovation</a></li>
-                                            <li><a href="category.html">Health & Wellness</a></li>
-                                            <li><a href="category.html">Business & Economy</a></li>
-                                            <li><a href="category.html">Travel & Exploration</a></li>
-                                            <li><a href="category.html">Arts & Entertainment</a></li>
-                                            <li><a href="category.html">Science & Environment</a></li>
-                                            <li><a href="category.html">Opinion & Editorials</a></li>
-                                            <li><a href="category.html">People & Stories</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Current Affairs</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Lifestyle & Culture</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Technology & Innovation</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Health & Wellness</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Business & Economy</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Travel & Exploration</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Arts & Entertainment</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Science & Environment</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Opinion & Editorials</a></li>
+                                            <li><a href="{{route('all.blogs')}}">People & Stories</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -535,16 +535,16 @@
                                 <div class="main-menu text-center">
                                     <nav>
                                         <ul>
-                                            <li><a href="category.html">Current Affairs</a></li>
-                                            <li><a href="category.html">Lifestyle & Culture</a></li>
-                                            <li><a href="category.html">Technology & Innovation</a></li>
-                                            <li><a href="category.html">Health & Wellness</a></li>
-                                            <li><a href="category.html">Business & Economy</a></li>
-                                            <li><a href="category.html">Travel & Exploration</a></li>
-                                            <li><a href="category.html">Arts & Entertainment</a></li>
-                                            <li><a href="category.html">Science & Environment</a></li>
-                                            <li><a href="category.html">Opinion & Editorials</a></li>
-                                            <li><a href="category.html">People & Stories</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Current Affairs</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Lifestyle & Culture</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Technology & Innovation</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Health & Wellness</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Business & Economy</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Travel & Exploration</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Arts & Entertainment</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Science & Environment</a></li>
+                                            <li><a href="{{route('all.blogs')}}">Opinion & Editorials</a></li>
+                                            <li><a href="{{route('all.blogs')}}">People & Stories</a></li>
                                         </ul>
                                     </nav>
                                 </div>
