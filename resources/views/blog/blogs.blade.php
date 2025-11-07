@@ -1,107 +1,218 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
+
 <head>
-    <meta charset="UTF-8">
-    <title>My Blog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Our Magazine</title>
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ 'assets/img/favicon.ico' }}">
 
-    <!-- Bootstrap CSS (Same as home) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Same Google Font (if used in home) -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        footer {
-            background: #343a40;
-            color: white;
-            padding: 1rem 0;
-        }
-        .footer a {
-            color: #adb5bd;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            color: white;
-        }
-    </style>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/progressbar_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animated-headline.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body>
-
-    <!-- Header/Navbar (matching home.blade.php) -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('blog.home') }}">My Blog</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a href="{{ route('blog.home') }}" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="{{route('all.blogs')}}" class="nav-link active">Blogs</a></li>
-                @auth
-                    <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
-                    <li class="nav-item">
-                        <form action="{{ route('admin.logout') }}" method="POST">@csrf
-                            <button class="btn btn-sm btn-outline-danger">Logout</button>
-                        </form>
-                    </li>
-                @else
-                    <li class="nav-item"><a href="{{ route('login.store') }}" class="nav-link">Login</a></li>
-                    <li class="nav-item"><a href="{{ route('register.store') }}" class="nav-link">Register</a></li>
-                @endauth
-            </ul>
+    <!-- Preloader -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ asset('assets/img/logo/loder.png') }}" alt="Loading...">
+                </div>
+            </div>
         </div>
-    </nav>
+    </div>
 
-{{-- Main Content --}}
-
-<!-- Blog Posts -->
-<br>
-<div class="container mb-5">
-    <h3 class="mb-4 text-center">Latest Blog Posts</h3>
-
-    @if ($posts->isEmpty())
-        <p class="text-center">No blog posts available.</p>
-    @else
-        <div class="row">
-            @foreach($posts as $post)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ $post->title }}</h5>
-                            <p class="card-text">{{ Str::limit($post->content, 150) }}</p>
-                            <p class="text-muted mt-auto">By {{ $post->user->name }} on {{ $post->created_at->format('d M Y') }}</p>
-                            <a href="{{ route('post.readmore', $post->id) }}" class="btn btn-sm btn-outline-primary mt-2">Read More</a>
+    <!-- Header -->
+    <header>
+        <div class="header-area">
+            <div class="main-header">
+                <div class="header-top py-3 bg-white shadow-sm">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <div class="logo text-center">
+                                    <a href="{{ route('blog.home') }}">
+                                        <img src="{{ asset('assets/img/logo/logo.png') }}" alt="Logo"
+                                            class="img-fluid" style="max-height: 60px;">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
-    @endif
-</div>
 
-    <!-- Footer -->
-    <footer class="text-center">
-    <div class="container">
-        <p>&copy; {{ date('Y') }} My Laravel Blog. All rights reserved.</p>
-    </div>
+                <!-- Navigation -->
+                <div class="header-bottom header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <div class="main-menu text-center d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{{ route('blog.home') }}">Home</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Blogs</a></li>
+                                            @auth
+                                                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                                <li>
+                                                    <form action="{{ route('admin.logout') }}" method="POST"
+                                                        class="d-inline">@csrf
+                                                        <button type="submit"
+                                                            class="btn btn-sm btn-danger text-white ms-2">Logout</button>
+                                                    </form>
+                                                </li>
+                                            @else
+                                                <li><a href="{{ route('login.page') }}">Login</a></li>
+                                                <li><a href="{{ route('register.page') }}">Register</a></li>
+                                            @endauth
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumb -->
+        <div class="page-notification">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ route('blog.home') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Blogs</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Latest Posts Area -->
+        <div class="container mb-5">
+            <div class="col-12">
+                <div class="section-tittle mb-35">
+                    <h2>Latest Posts</h2>
+                </div>
+            </div>
+
+            @if ($posts->isEmpty())
+                <p class="text-center text-muted">No blog posts available.</p>
+            @else
+                <div class="row">
+                    @foreach ($posts->take(12) as $post)
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 shadow-sm border-0">
+                                @if ($post->image)
+                                    <img src="{{ asset('storage/blog_images' . $post->image) }}" class="card-img-top"
+                                        alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('images/blog.png') }}" class="card-img-top"
+                                        alt="Default Image" style="height: 200px; object-fit: cover;">
+                                @endif
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    <p class="card-text text-muted">{{ Str::limit($post->content, 120) }}</p>
+
+                                    <p class="text-muted mt-auto mb-2 small">
+                                        By <strong>{{ $post->user->name }}</strong> on
+                                        {{ $post->created_at->format('d M Y') }}
+                                        @if (!$post->is_published)
+                                            {{-- <span class="badge bg-warning text-dark ms-2">Pending Approval</span> --}}
+                                        @endif
+                                    </p>
+
+                                    <a href="{{ route('post.readmore', $post->id) }}"
+                                        class="btn btn-sm btn-outline-primary mt-auto">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- View More Button -->
+                @if ($posts->count() > 6)
+                    <div class="text-center mt-4">
+                        <a href="{{ route('all.blogs') }}" class="view-more-btn">
+                            View All Posts <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                @endif
+            @endif
+        </div>
+    </main>
+    <footer class="footer-bottom py-3 mt-5 bg-light border-top">
+        <div class="container text-center">
+            <strong>
+                © 2025
+                <a href="https://d-rajdeep.in/" class="text-decoration-none text-primary fw-semibold"
+                    target="_blank">
+                    Rajdeep
+                </a>
+                . All Rights Reserved.
+            </strong>
+        </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
+
+    <!-- JS -->
+    <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('assets/js/gijgo.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.barfiller.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('assets/js/hover-direction-snake.min.js') }}"></script>
+    <script src="{{ asset('assets/js/contact.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.form.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/mail-script.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
+
 </html>
