@@ -2,7 +2,7 @@
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand d-flex flex-column align-items-center text-decoration-none"
             href="{{ route('dashboard') }}">
-            <span style="font-size: 1.25rem; font-weight: bold; color: #2c3e50;">My Blog</span>
+            <span style="font-size: 1.25rem; font-weight: bold; color: #2c3e50;">EchoMag</span>
             <span style="font-size: 1rem; font-weight: 500; color: #ac4986;">Admin Dashboard</span>
         </a>
     </div>

@@ -33,6 +33,12 @@
                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#viewPostModal{{ $post->id }}">View</button>
 
+                                <!-- Delete Button -->
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#deletePostModal{{ $post->id }}">
+                                    Delete Post
+                                </button>
+
                                 <!-- Approve Button -->
                                 @if (!$post->is_approved)
                                     <form action="{{ route('admin.post.verify', $post->id) }}" method="POST"
@@ -62,8 +68,8 @@
                                         <!-- Display image if available -->
                                         @if ($post->image)
                                             <div class="text-center mb-3">
-                                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}"
-                                                    class="img-fluid rounded shadow-sm"
+                                                <img src="{{ asset('storage/' . $post->image) }}"
+                                                    alt="{{ $post->title }}" class="img-fluid rounded shadow-sm"
                                                     style="max-height: 400px; object-fit: cover;">
                                             </div>
                                             <hr>
@@ -82,4 +88,32 @@
             </table>
         @endif
     </div>
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deletePostModal{{ $post->id }}" tabindex="-1"
+        aria-labelledby="deletePostModalLabel{{ $post->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deletePostModalLabel{{ $post->id }}">Confirm Delete</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete the post <strong>"{{ $post->title }}"</strong>?
+                    This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                    <form action="{{ route('admin.post.delete') }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" value="{{ $post->id }}">
+                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

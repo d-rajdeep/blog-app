@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{{ $post->title }} | Magazine News</title>
+    <title>{{ $post->title }} | EchoMag</title>
     <meta name="description" content="{{ Str::limit(strip_tags($post->content), 160) }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}">
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -134,6 +134,10 @@
 
                         <!-- Post Title -->
                         <div class="about-details-cap mb-4">
+                            @if ($post->category)
+                                <p class="text-uppercase text-primary small fw-semibold mb-1">
+                                    {{ $post->category->name }}</p>
+                            @endif
                             <h2 class="fw-bold">{{ $post->title }}</h2>
                             <p class="text-muted mb-4">
                                 By <strong>{{ $post->user->name }}</strong> on

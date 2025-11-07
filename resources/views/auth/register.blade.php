@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Magazine News</title>
+    <title>EchoMag - Register</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -75,16 +75,16 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="{{ route('blog.home') }}">Home</a></li>
-                                            <li><a href="category.html">Lifestyle</a></li>
-                                            <li><a href="category.html">Business</a></li>
-                                            <li><a href="category.html">Fashion</a></li>
-                                            <li><a href="category.html">Design</a></li>
-                                            <li><a href="category.html">Health</a></li>
-                                            <li><a href="category.html">Harmful</a></li>
-                                            <li><a href="category.html">Technology</a></li>
-                                            <li><a href="category.html">Travel</a></li>
-                                            <li><a href="category.html">Food</a></li>
-                                            <li><a href="category.html">Creative</a></li>
+                                            <li><a href="category.html">Current Affairs</a></li>
+                                            <li><a href="category.html">Lifestyle & Culture</a></li>
+                                            <li><a href="category.html">Technology & Innovation</a></li>
+                                            <li><a href="category.html">Health & Wellness</a></li>
+                                            <li><a href="category.html">Business & Economy</a></li>
+                                            <li><a href="category.html">Travel & Exploration</a></li>
+                                            <li><a href="category.html">Arts & Entertainment</a></li>
+                                            <li><a href="category.html">Science & Environment</a></li>
+                                            <li><a href="category.html">Opinion & Editorials</a></li>
+                                            <li><a href="category.html">People & Stories</a></li>
                                         </ul>
                                     </nav>
                                 </div>

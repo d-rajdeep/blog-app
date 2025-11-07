@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ 'assets/img/favicon.ico' }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ 'assets/img/favicon.png' }}">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -138,7 +138,13 @@
                                 @endif
 
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    @if ($post->category)
+                                        <p class="text-uppercase text-primary small fw-semibold mb-1">
+                                            {{ $post->category->name }}</p>
+                                    @endif
+
+                                    <h5 class="card-title mb-2">{{ $post->title }}</h5>
+
                                     <p class="card-text text-muted">{{ Str::limit($post->content, 120) }}</p>
 
                                     <p class="text-muted mt-auto mb-2 small">
@@ -170,6 +176,65 @@
             @endif
         </div>
     </main>
+    <div class="footer-area footer-padding">
+        <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top d-lg-block d-none">
+                    <div class="container">
+                        <div class="col-xl-12">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="header-info-left d-flex justify-content-center">
+                                    <!-- Social -->
+                                    <div class="header-social">
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                    </div>
+                                </div>
+                                <div class="header-info-mid">
+                                    <!-- logo -->
+                                    <div class="logo">
+                                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="header-info-right d-flex align-items-center">
+                                    <ul>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom header-bottom2 ">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-12">
+                                <!-- Main-menu -->
+                                <div class="main-menu text-center">
+                                    <nav>
+                                        <ul>
+                                            <li><a href="category.html">Current Affairs</a></li>
+                                            <li><a href="category.html">Lifestyle & Culture</a></li>
+                                            <li><a href="category.html">Technology & Innovation</a></li>
+                                            <li><a href="category.html">Health & Wellness</a></li>
+                                            <li><a href="category.html">Business & Economy</a></li>
+                                            <li><a href="category.html">Travel & Exploration</a></li>
+                                            <li><a href="category.html">Arts & Entertainment</a></li>
+                                            <li><a href="category.html">Science & Environment</a></li>
+                                            <li><a href="category.html">Opinion & Editorials</a></li>
+                                            <li><a href="category.html">People & Stories</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer class="footer-bottom py-3 mt-5 bg-light border-top">
         <div class="container text-center">
             <strong>

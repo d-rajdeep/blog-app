@@ -29,6 +29,16 @@
             </div>
 
             <div class="mb-3">
+                <label for="category_id" class="form-label">Select Category</label>
+                <select name="category_id" id="category_id" class="form-select" required>
+                    <option value="">-- Choose a Category --</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
                 <label for="image" class="form-label">Upload Image</label>
                 <input type="file" class="form-control" name="image" accept="image/*">
             </div>

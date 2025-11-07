@@ -59,6 +59,8 @@ Route::middleware(['web', 'admin.auth'])->group(function () {
     // View Users and Posts
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/user/{id}/posts', [AdminController::class, 'userPosts'])->name('admin.user.posts');
+    Route::delete('/admin/post', [AdminController::class, 'postDelete'])->name('admin.post.delete');
+    Route::delete('/user', [AdminController::class, 'userDelete'])->name('admin.user.delete');
     Route::get('/posts', [AdminController::class, 'posts'])->name('admin.posts');
     Route::post('/post/{id}/verify', [AdminController::class, 'verifyPost'])->name('admin.post.verify');
 });
