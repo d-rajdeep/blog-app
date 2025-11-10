@@ -130,7 +130,7 @@
                         <div class="col-md-4 mb-4">
                             <div class="card h-100 shadow-sm border-0">
                                 @if ($post->image)
-                                    <img src="{{ asset('storage/blog_images' . $post->image) }}" class="card-img-top"
+                                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top"
                                         alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
                                 @else
                                     <img src="{{ asset('images/blog.png') }}" class="card-img-top"
