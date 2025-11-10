@@ -103,20 +103,35 @@
                                 <div class="main-menu text-center d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="{{route('all.blogs')}}">Current Affairs</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Lifestyle & Culture</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Technology & Innovation</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Health & Wellness</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Business & Economy</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Travel & Exploration</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Arts & Entertainment</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Science & Environment</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Opinion & Editorials</a></li>
-                                            <li><a href="{{route('all.blogs')}}">People & Stories</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Current Affairs</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Lifestyle & Culture</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Technology & Innovation</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Health & Wellness</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Business & Economy</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Travel & Exploration</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Arts & Entertainment</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Science & Environment</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Opinion & Editorials</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">People & Stories</a></li>
+                                            <div class="col-12 d-block d-lg-none text-center mt-2">
+                                                @auth
+                                                    <a href="{{ route('dashboard') }}" class="btn btn-primary px-4 py-2"
+                                                        style="border-radius: 20px;">
+                                                        <i class="bi bi-speedometer2 me-1"></i> Dashboard
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('login.page') }}"
+                                                        class="btn btn-outline-primary px-4 py-2"
+                                                        style="border-radius: 20px;">
+                                                        <i class="bi bi-box-arrow-in-right me-1"></i> Log In / Sign Up
+                                                    </a>
+                                                @endauth
+                                            </div>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
+
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
@@ -242,13 +257,16 @@
                     @foreach ($posts->take(6) as $post)
                         <div class="col-md-4 mb-4">
                             <div class="card h-100 shadow-sm border-0">
-                                @if ($post->image)
-                                    <img src="{{ asset('storage/blog_images' . $post->image) }}" class="card-img-top"
-                                        alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
-                                @else
-                                    <img src="{{ asset('images/blog.png') }}" class="card-img-top"
-                                        alt="Default Image" style="height: 200px; object-fit: cover;">
-                                @endif
+                                <div class="card-img-container"
+                                    style="width: 370px; height: 200px; background-color: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 6px;">
+                                    @if ($post->image)
+                                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}"
+                                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    @else
+                                        <img src="{{ asset('images/blog.png') }}" alt="Default Image"
+                                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    @endif
+                                </div>
 
                                 <div class="card-body d-flex flex-column">
                                     @if ($post->category)
@@ -452,19 +470,28 @@
                 <p class="text-center text-muted">No blog posts available.</p>
             @else
                 <div class="row">
-                    @foreach ($posts->take(3) as $post)
+                    @foreach ($posts->take(6) as $post)
                         <div class="col-md-4 mb-4">
                             <div class="card h-100 shadow-sm border-0">
-                                @if ($post->image)
-                                    <img src="{{ asset('storage/blog_images' . $post->image) }}" class="card-img-top"
-                                        alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
-                                @else
-                                    <img src="{{ asset('images/blog.png') }}" class="card-img-top"
-                                        alt="Default Image" style="height: 200px; object-fit: cover;">
-                                @endif
+                                <div class="card-img-container"
+                                    style="width: 370px; height: 200px; background-color: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 6px;">
+                                    @if ($post->image)
+                                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}"
+                                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    @else
+                                        <img src="{{ asset('images/blog.png') }}" alt="Default Image"
+                                            style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    @endif
+                                </div>
 
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    @if ($post->category)
+                                        <p class="text-uppercase text-primary small fw-semibold mb-1">
+                                            {{ $post->category->name }}</p>
+                                    @endif
+
+                                    <h5 class="card-title mb-2">{{ $post->title }}</h5>
+
                                     <p class="card-text text-muted">{{ Str::limit($post->content, 120) }}</p>
 
                                     <p class="text-muted mt-auto mb-2 small">
@@ -480,6 +507,7 @@
                                         Read More
                                     </a>
                                 </div>
+
                             </div>
                         </div>
                     @endforeach
@@ -535,16 +563,16 @@
                                 <div class="main-menu text-center">
                                     <nav>
                                         <ul>
-                                            <li><a href="{{route('all.blogs')}}">Current Affairs</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Lifestyle & Culture</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Technology & Innovation</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Health & Wellness</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Business & Economy</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Travel & Exploration</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Arts & Entertainment</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Science & Environment</a></li>
-                                            <li><a href="{{route('all.blogs')}}">Opinion & Editorials</a></li>
-                                            <li><a href="{{route('all.blogs')}}">People & Stories</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Current Affairs</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Lifestyle & Culture</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Technology & Innovation</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Health & Wellness</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Business & Economy</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Travel & Exploration</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Arts & Entertainment</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Science & Environment</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">Opinion & Editorials</a></li>
+                                            <li><a href="{{ route('all.blogs') }}">People & Stories</a></li>
                                         </ul>
                                     </nav>
                                 </div>

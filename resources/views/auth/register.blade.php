@@ -67,9 +67,9 @@
                                     <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
                                 </div>
                                 <!-- logo 3 -->
-                                <div class="logo3 d-block d-sm-none">
+                                {{-- <div class="logo3 d-block d-sm-none">
                                     <a href="index.html"><img src="assets/img/logo/logo-mobile.png" alt=""></a>
-                                </div>
+                                </div> --}}
                                 <!-- Main-menu -->
                                 <div class="main-menu text-center d-none d-lg-block">
                                     <nav>

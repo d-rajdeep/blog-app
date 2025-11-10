@@ -26,6 +26,20 @@
     <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <meta property="og:title" content="{{ $post->title }}">
+    <meta property="og:description" content="{{ Str::limit(strip_tags($post->content), 150) }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ Request::url() }}">
+    <meta property="og:image" content="{{ asset('storage/' . $post->image) }}">
+    <meta property="article:author" content="{{ $post->user->name }}">
+    <meta property="article:published_time" content="{{ $post->created_at->toIso8601String() }}">
+
+    <!-- Twitter Card for better preview -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $post->title }}">
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($post->content), 150) }}">
+    <meta name="twitter:image" content="{{ asset('storage/' . $post->image) }}">
 </head>
 
 <body>
@@ -143,34 +157,54 @@
                                 By <strong>{{ $post->user->name }}</strong> on
                                 {{ $post->created_at->format('d M Y') }}
                             </p>
-                            <div class="fs-5 lh-lg text-dark mb-4">
+                            <div class="fs-5 lh-lg text-dark mb-4" style="text-align: justify;">
                                 {!! nl2br(e($post->content)) !!}
                             </div>
                         </div>
 
                         <!-- Social Icons -->
                         <div class="social-iocn pt-20 pb-20 text-center">
+                            <!-- Facebook -->
                             <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}"
-                                target="_blank">
-                                <img class="mr-10 mb-10" src="{{ asset('assets/img/gallery/facebook.png') }}"
-                                    alt="Facebook">
+                                target="_blank" title="Share on Facebook" class="me-2">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg"
+                                    alt="Facebook" width="28" height="28" style="fill: #1877F2;">
                             </a>
+
+                            <!-- Twitter (X) -->
                             <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::url()) }}&text={{ $post->title }}"
-                                target="_blank">
-                                <img class="mr-10 mb-10" src="{{ asset('assets/img/gallery/twitter.png') }}"
-                                    alt="Twitter">
+                                target="_blank" title="Share on Twitter" class="me-2">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg"
+                                    alt="Twitter" width="28" height="28" style="fill: #000000;">
                             </a>
-                            <a href="https://pinterest.com/pin/create/button/?url={{ urlencode(Request::url()) }}"
-                                target="_blank">
-                                <img class="mr-10 mb-10" src="{{ asset('assets/img/gallery/pinterest.png') }}"
-                                    alt="Pinterest">
+
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(Request::url()) }}"
+                                target="_blank" title="Share on LinkedIn" class="me-2">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+                                    alt="LinkedIn" width="28" height="28" style="fill: #0A66C2;">
                             </a>
+
+                            <!-- WhatsApp -->
                             <a href="https://wa.me/?text={{ urlencode($post->title . ' ' . Request::url()) }}"
-                                target="_blank">
-                                <img class="mb-10" src="{{ asset('assets/img/gallery/whatsapp.png') }}"
-                                    alt="WhatsApp">
+                                target="_blank" title="Share on WhatsApp">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg"
+                                    alt="WhatsApp" width="28" height="28" style="fill: #25D366;">
                             </a>
                         </div>
+
+                        <style>
+                            .social-iocn a img {
+                                width: 32px;
+                                height: 32px;
+                                margin: 8px;
+                                transition: transform 0.3s ease;
+                            }
+
+                            .social-iocn a:hover img {
+                                transform: scale(1.15);
+                            }
+                        </style>
 
                         <!-- Back to Home -->
                         <div class="text-center mt-4">
