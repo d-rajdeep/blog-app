@@ -76,7 +76,8 @@
                                 <div class="header-info-mid">
                                     <!-- logo -->
                                     <div class="logo">
-                                        <a href="{{route('blog.home')}}"><img src="assets/img/logo/logo.png" alt=""></a>
+                                        <a href="{{ route('blog.home') }}"><img src="assets/img/logo/logo.png"
+                                                alt=""></a>
                                     </div>
                                 </div>
                                 <div class="header-info-right d-flex align-items-center">
@@ -114,11 +115,13 @@
                             <div class="col-12">
                                 <!-- logo 2 -->
                                 <div class="logo2">
-                                    <a href="{{route('blog.home')}}"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="{{ route('blog.home') }}"><img src="assets/img/logo/logo.png"
+                                            alt=""></a>
                                 </div>
                                 <!-- logo 3 -->
                                 <div class="logo3 d-block d-sm-none">
-                                    <a href="{{route('blog.home')}}"><img src="assets/img/logo/logo-mobile.png" alt=""></a>
+                                    <a href="{{ route('blog.home') }}"><img src="assets/img/logo/logo-mobile.png"
+                                            alt=""></a>
                                 </div>
                                 <!-- Main-menu -->
                                 <div class="main-menu text-center d-none d-lg-block">
@@ -335,43 +338,79 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="news-slider-active">
+                            <!-- Current Affairs -->
                             <div class="single-news-slider">
-                                <div class="news-img">
-                                    <a href="category.html"><img src="assets/img/gallery/news-slider1.png"
-                                            alt=""></a>
+                                <div class="news-img position-relative">
+                                    <a href="{{ route('all.blogs') }}">
+                                        <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201909/current_affairs_new_0.png?w=800&q=80"
+                                            alt="Current Affairs"
+                                            style="width:100%; height:250px; object-fit:cover; border-radius:10px;">
+                                        <span class="category-overlay">Current Affairs</span>
+                                    </a>
                                 </div>
                             </div>
+
+                            <!-- Technology & Innovation -->
                             <div class="single-news-slider">
-                                <div class="news-img">
-                                    <a href="category.html"><img src="assets/img/gallery/news-slider2.png"
-                                            alt=""></a>
+                                <div class="news-img position-relative">
+                                    <a href="{{ route('all.blogs') }}">
+                                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80"
+                                            alt="Technology & Innovation"
+                                            style="width:100%; height:250px; object-fit:cover; border-radius:10px;">
+                                        <span class="category-overlay">Technology & Innovation</span>
+                                    </a>
                                 </div>
                             </div>
+
+                            <!-- Lifestyle & Culture -->
                             <div class="single-news-slider">
-                                <div class="news-img">
-                                    <a href="category.html"><img src="assets/img/gallery/news-slider3.png"
-                                            alt=""></a>
+                                <div class="news-img position-relative">
+                                    <a href="{{ route('all.blogs') }}">
+                                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&q=80"
+                                            alt="Lifestyle & Culture"
+                                            style="width:100%; height:250px; object-fit:cover; border-radius:10px;">
+                                        <span class="category-overlay">Lifestyle & Culture</span>
+                                    </a>
                                 </div>
                             </div>
+
+                            <!-- Health & Wellness -->
                             <div class="single-news-slider">
-                                <div class="news-img">
-                                    <a href="category.html"><img src="assets/img/gallery/news-slider4.png"
-                                            alt=""></a>
+                                <div class="news-img position-relative">
+                                    <a href="{{ route('all.blogs') }}">
+                                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80"
+                                            alt="Health & Wellness"
+                                            style="width:100%; height:250px; object-fit:cover; border-radius:10px;">
+                                        <span class="category-overlay">Health & Wellness</span>
+                                    </a>
                                 </div>
                             </div>
+
+                            <!-- Travel & Exploration -->
                             <div class="single-news-slider">
-                                <div class="news-img">
-                                    <a href="category.html"><img src="assets/img/gallery/news-slider1.png"
-                                            alt=""></a>
+                                <div class="news-img position-relative">
+                                    <a href="{{ route('all.blogs') }}">
+                                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
+                                            alt="Travel & Exploration"
+                                            style="width:100%; height:250px; object-fit:cover; border-radius:10px;">
+                                        <span class="category-overlay">Travel & Exploration</span>
+                                    </a>
                                 </div>
                             </div>
+
+                            <!-- Business & Economy -->
                             <div class="single-news-slider">
-                                <div class="news-img">
-                                    <a href="category.html"><img src="assets/img/gallery/news-slider2.png"
-                                            alt=""></a>
+                                <div class="news-img position-relative">
+                                    <a href="{{ route('all.blogs') }}">
+                                        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=800&q=80"
+                                            alt="Business & Economy"
+                                            style="width:100%; height:250px; object-fit:cover; border-radius:10px;">
+                                        <span class="category-overlay">Business & Economy</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -600,7 +639,7 @@
 
                                 <!-- Centered Logo -->
                                 <div class="footer-logo text-center mt-3">
-                                    <a href="{{route('blog.home')}}">
+                                    <a href="{{ route('blog.home') }}">
                                         <img src="assets/img/logo/logo.png" alt="Logo" style="max-height: 80px;">
                                     </a>
                                 </div>
@@ -698,6 +737,19 @@
 
         .header-social a:hover i {
             transform: scale(1.2);
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: capitalize;
         }
     </style>
 </body>
