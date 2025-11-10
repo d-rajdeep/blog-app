@@ -138,11 +138,12 @@
                         <!-- Post Image -->
                         <div class="details-img mb-40 text-center">
                             @if ($post->image)
-                                <img class="img-fluid rounded shadow-sm" src="{{ asset('storage/' . $post->image) }}"
-                                    alt="{{ $post->title }}" style="max-height: 450px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $post->image) }}"
+                                    alt="{{ $post->title }}"
+                                    style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             @else
-                                <img class="img-fluid rounded shadow-sm"
-                                    src="{{ asset('assets/img/gallery/post_details.png') }}" alt="Default Image">
+                                <img src="{{ asset('images/blog.png') }}" alt="Default Image"
+                                    style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             @endif
                         </div>
 
