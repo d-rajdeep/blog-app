@@ -182,7 +182,7 @@
                                     <div class="single-input-fields login-check">
                                         <input type="checkbox" id="keep-log" name="keep-log">
                                         <label for="keep-log">Keep me logged in</label>
-                                        <a href="#" class="f-right">Forgot Password?</a>
+                                        <a href="{{route('forgot.password')}}" class="f-right">Forgot Password?</a>
                                     </div>
                                 </div>
 

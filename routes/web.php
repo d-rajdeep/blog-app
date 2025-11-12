@@ -23,6 +23,9 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.st
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login.page');
 Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout.store');
+Route::get('/forgot-password', function () {
+    return view('forgot_password');
+})->name('forgot.password');
 
 // --------------------
 // User Authenticated Routes
