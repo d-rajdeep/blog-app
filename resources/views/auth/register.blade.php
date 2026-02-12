@@ -255,10 +255,10 @@
     <footer class="footer-bottom py-3 mt-5 bg-light border-top">
         <div class="container text-center">
             <strong>
-                © 2025
-                <a href="https://d-rajdeep.in/" class="text-decoration-none text-primary fw-semibold"
+                © 2026
+                <a href="https://d-rajdeep.github.io/" class="text-decoration-none text-primary fw-semibold"
                     target="_blank">
-                    Rajdeep
+                    EchoMag
                 </a>
                 . All Rights Reserved.
             </strong>

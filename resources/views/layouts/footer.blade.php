@@ -4,8 +4,8 @@
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; 2025&nbsp;
-          <a href="https://d-rajdeep.in/" class="text-decoration-none">Rajdeep</a>.
+          Copyright &copy; 2026&nbsp;
+          <a href="https://d-rajdeep.github.io/" class="text-decoration-none">EchoMag</a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->

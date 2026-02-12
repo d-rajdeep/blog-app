@@ -53,8 +53,9 @@
                         </td>
                         <td>
                             <a href="{{ route('post.show', $post->id) }}" class="btn btn-info btn-sm">View</a>
+                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-warning btn-sm">Edit</a>
                             @if (!$post->is_approved)
-                                <a href="{{ route('post.edit', $post->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
                             @endif
                             <!-- Delete Button (opens modal) -->
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $post->id }}">
